@@ -22,24 +22,37 @@
 //            :   and address register
 /////////////////////////////////////////////////////////////////////
 
+
+/////////////////////////////////////////////////////////////////////
+// Design unit: imem
+// File name  : imem.sv
+// Description: Instruction memory for basic processor
+/////////////////////////////////////////////////////////////////////
+
 module imem #(parameter WORD_W = 8, OP_W = 3)
                (input logic [WORD_W-OP_W-1:0] Iaddress,
                 output logic [WORD_W-1:0] Idata);
 
 `include "opcodes.svh"
 
-
 always_comb
-  begin
-  Idata = 0;
-  case (Iaddress)
-    0: Idata = {`STORE, 5'd30}; //Store the contents of data register
-    1: Idata = {`LOAD, 5'd30};  //Load the contents of address into the data register
-    2: Idata = {`ADDI, 5'd2};    //Add the value of the operand to the data register
-    3: Idata = {`STORE, 5'd30}; //Store the contents of data register
-    4: Idata = {`BNE, 5'd1};    //Branch if result of last arithmetic operation is not zero
-    default: Idata = 0;         //rest of ROM is 0
-  endcase
-  end
+begin
+    Idata = 0;
+
+    case (Iaddress)
+
+        0: Idata = {`STORE, 5'd30};
+        1: Idata = {`LOAD, 5'd30};
+        2: Idata = {`ADD, 5'd31};
+        3: Idata = {`STORE, 5'd30};
+        4: Idata = {`BNE, 5'd1};
+
+        default: Idata = 0;
+
+    endcase
+end
+
+endmodule
+
 
 endmodule
