@@ -11,23 +11,22 @@ module imem #(parameter WORD_W = 8, OP_W = 3)
 
 `include "opcodes.svh"
 
+
 always_comb
 begin
     Idata = 0;
 
     case (Iaddress)
-
-        0: Idata = {`STORE, 5'd29}; // Initialise temporary memory
-        1: Idata = {`LOAD,  5'd31}; // Read first switch value
-        2: Idata = {`STORE, 5'd29}; // Save first number
-        3: Idata = {`LOAD,  5'd31}; // Read second switch value
-        4: Idata = {`ADD,   5'd29}; // Add first number
-        5: Idata = {`STORE, 5'd30}; // Display the sum
-        6: Idata = {`BNE,   5'd6};  // Loop here if sum is non-zero
+        0: Idata = {`ADDI, 5'd5};
+        1: Idata = {`STORE, 5'd10};
+        2: Idata = {`ADDI, 5'd3};
+        3: Idata = {`XOR, 5'd10};
+        4: Idata = {`STORE, 5'd30};
+        5: Idata = {`BNE, 5'd5};
 
         default: Idata = 0;
-
     endcase
 end
+
 
 endmodule
