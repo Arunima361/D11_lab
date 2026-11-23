@@ -1,4 +1,4 @@
-module cpu1 #(parameter WORD_W = 8, OP_W = 3)
+module cpu3 #(parameter WORD_W = 8, OP_W = 3)
                   (input logic clock, n_reset,
                    output logic [6:0] disp0, disp1);
 		   
