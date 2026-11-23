@@ -22,7 +22,8 @@
 /////////////////////////////////////////////////////////////////////
 
 module alu #(parameter WORD_W = 8)
-            (input logic clock, n_reset, load_REG, ALU_REG, ALU_add, ALU_sub,
+            (input logic clock, n_reset, load_REG, ALU_REG,
+             ALU_add, ALU_sub, ALU_xor,
              input logic [WORD_W-1:0] Adata,
              output logic [WORD_W-1:0] Wdata,
              output logic z_flag);
@@ -41,12 +42,13 @@ always_ff @(posedge clock, negedge n_reset)
     if (load_REG)
       if (ALU_REG)
         begin
-        if (ALU_add)
-          Wdata <= Wdata + Adata;
-        else if (ALU_sub)
-          Wdata <= Wdata - Adata;
-        end
-      else
-        Wdata <= Adata;
+       if (ALU_add)
+    Wdata <= Wdata + Adata;
+
+else if (ALU_sub)
+    Wdata <= Wdata - Adata;
+
+else if (ALU_xor)
+    Wdata <= Wdata ^ Adata;
   end
 endmodule
