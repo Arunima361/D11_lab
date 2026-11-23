@@ -1,37 +1,7 @@
-/////////////////////////////////////////////////////////////////////
-// Design unit: imem
-//            :
-// File name  : imem.sv
-//            :
-// Description: Instruction memory for basic processor
-//            : including simple program
-//            :
-// Limitations: None
-//            :
-// System     : SystemVerilog IEEE 1800-2005
-//            :
-// Author     : Mark Zwolinski
-//            : School of Electronics and Computer Science
-//            : University of Southampton
-//            : Southampton SO17 1BJ, UK
-//            : mz@ecs.soton.ac.uk
-//
-// Revision   : Version 1.0 12/12/14
-//            : Version 1.1 14/01/21 Simplified some of the syntax
-//            : Version 2.0 14/03/24 Rewritten to remove tristate bus
-//            :   and address register
-/////////////////////////////////////////////////////////////////////
-
-
-/////////////////////////////////////////////////////////////////////
-// Design unit: imem
-// File name  : imem.sv
-// Description: Instruction memory for basic processor
-/////////////////////////////////////////////////////////////////////
 
 module imem #(parameter WORD_W = 8, OP_W = 3)
-               (input logic [WORD_W-OP_W-1:0] Iaddress,
-                output logic [WORD_W-1:0] Idata);
+    (input logic [WORD_W-OP_W-1:0] Iaddress,
+     output logic [WORD_W-1:0] Idata);
 
 `include "opcodes.svh"
 
@@ -51,8 +21,5 @@ begin
 
     endcase
 end
-
-endmodule
-
 
 endmodule
