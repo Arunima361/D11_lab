@@ -2,7 +2,7 @@
 /////////////////////////////////////////////////////////////////////
 // Design unit: test_cpu2
 // File name  : test_cpu2.sv
-// Description: Testbench for CPU2 with changing switch inputs
+// Description: Testbench for adding two switch inputs
 /////////////////////////////////////////////////////////////////////
 
 module test_cpu2;
@@ -13,7 +13,7 @@ logic clock, n_reset;
 logic [6:0] disp0, disp1;
 logic [WORD_W-1:0] switches;
 
-// Instantiate CPU2
+// CPU2 instance
 cpu2 #(.WORD_W(WORD_W), .OP_W(OP_W)) c1 (.*);
 
 // Clock generation: 20 ns period
@@ -35,18 +35,12 @@ begin
     #2ns n_reset = 1'b1;
 end
 
-// Switch input generation
+// Two switch inputs
 initial
 begin
-    switches = 8'd3;
+    switches = 8'd3;       // First number
 
-    #200ns switches = 8'd5;
-
-    #200ns switches = 8'd2;
-
-    #200ns switches = 8'd7;
-
-    #200ns switches = 8'd1;
+    #20ns switches = 8'd5; // Second number
 end
 
 endmodule
